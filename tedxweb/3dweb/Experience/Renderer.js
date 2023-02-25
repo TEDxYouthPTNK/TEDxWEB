@@ -8,7 +8,6 @@ export default class Renderer{
         this.canvas= this.experience.canvas;
         this.camera=this.experience.camera;
         this.setRenderer();
-        console.log(this.camera, this.camera.perspectiveCamera)
     }
     setRenderer(){
         this.renderer= new THREE.WebGLRenderer({
