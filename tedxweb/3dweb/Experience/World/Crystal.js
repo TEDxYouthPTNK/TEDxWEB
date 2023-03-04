@@ -14,21 +14,21 @@ export default class Crystal extends EventEmitter{
         this.actualCrystal = this.crystal.scene;
         this.crystalChildren = {};
         this.clock= new THREE.Clock();
+        // this.setAnimation();
         this.setModel();
-        this.setAnimation();
     }
     setModel(){
         // this.actualCrystal.crystalChildren.array.forEach(child => {
         //     child.castShadow=true;
         //     child.receiveShadow=true;
         // });
+        this.setAnimation();
         this.scene.add(this.actualCrystal);
         // this.actualCrystal.scale.set(1,1,1);
         // this.actualCrystal.rotationY=Math.PI;
     }
     setAnimation(){
         const elapsedTime = this.clock.getElapsedTime()
-
         this.actualCrystal.rotationX+= 0.01*elapsedTime;
         this.actualCrystal.positionY=Math.sin(elapsedTime);
     }
