@@ -14,8 +14,8 @@ export default class Crystal extends EventEmitter{
         this.actualCrystal = this.crystal.scene;
         this.crystalChildren = {};
         this.clock= new THREE.Clock();
-        // this.setAnimation();
         this.setModel();
+        this.setAnimation();
     }
     setModel(){
         // this.actualCrystal.crystalChildren.array.forEach(child => {
@@ -33,5 +33,7 @@ export default class Crystal extends EventEmitter{
         this.actualCrystal.positionY=Math.sin(elapsedTime);
     }
     resize(){}
-    update(){}
+    update(){
+        // this.crystal.update(this.time.delta)
+    }
  }

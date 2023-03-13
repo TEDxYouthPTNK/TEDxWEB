@@ -26,5 +26,9 @@ export default class World extends EventEmitter{
         // this.crystal= new Crystal();
     }
     resize(){}
-    update(){}
+    update(){
+        if(this.crystal){
+            this.crystal.update();
+        }
+    }
  }
