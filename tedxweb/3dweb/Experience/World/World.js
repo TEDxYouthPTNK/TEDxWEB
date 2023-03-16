@@ -4,6 +4,7 @@ import Experience from "../Experience.js";
 
 import Crystal from "./crystal.js";
 import Environment from "./Environment.js";
+import Controls from "./controls.js";
 import { EventEmitter } from "events";
 export default class World extends EventEmitter{
     constructor(){
@@ -22,6 +23,7 @@ export default class World extends EventEmitter{
         this.resources.on("ready",()=>{
             this.environment= new Environment();
             this.crystal= new Crystal();
+            this.controls= new Controls();
         })
         // this.crystal= new Crystal();
     }
@@ -29,6 +31,9 @@ export default class World extends EventEmitter{
     update(){
         if(this.crystal){
             this.crystal.update();
+        }
+        if(this.controls){
+            this.controls.update();
         }
     }
  }
