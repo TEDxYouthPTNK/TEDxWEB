@@ -2,6 +2,7 @@ import Experience from "../Experience";
 import * as THREE from "three"
 import Resources from "../utils/resources";
 import { EventEmitter } from "events";
+import GSAP from "gsap";
 import Time from "../utils/time";
 export default class Controls extends EventEmitter{
     constructor(){
@@ -19,6 +20,14 @@ export default class Controls extends EventEmitter{
             target:0,
             ease:0.1,
         }
+        this.position= new THREE.Vector3(0,0,0);
+        this.lookAtPosition= new THREE.Vector3(0,0,0);
+
+        this.directionalVector= new THREE.Vector3();
+        this.staticVector= new THREE.Vector3(0,1,0);
+        this.crossVector= new THREE.Vector3();
+
+
         this.setPath();
         this.onWheel();
     }
@@ -26,23 +35,22 @@ export default class Controls extends EventEmitter{
         window.addEventListener("wheel", (e)=>{
             // console.log(e);
             if(e.deltaY>0){
-                this.progress+=0.01;
+                this.lerp.target+=0.01;
+                this.back=false;
             }
             else{
-                this.progress-=0.01;
-                if(this.progress<0){
-                    this.progress=1;
-                }
+                this.lerp.target-=0.01;
+                this.back=true;
             }
         })
     }
     setPath(){
         this.curve = new THREE.CatmullRomCurve3( [
-            new THREE.Vector3( -10, 0, 10 ),
-            new THREE.Vector3( -5, 5, 5 ),
-            new THREE.Vector3( 0, 0, 0 ),
-            new THREE.Vector3( 5, -5, 5 ),
-            new THREE.Vector3( 10, 0, 10 )
+            new THREE.Vector3(-5,0,0),
+            new THREE.Vector3(0,0,-5),
+            new THREE.Vector3(5,0,0),
+            new THREE.Vector3(0,0,5),
+
         ], true );
 
         const points = this.curve.getPoints( 50 );
@@ -56,8 +64,37 @@ export default class Controls extends EventEmitter{
     }
     resize(){}
     update(){
-        this.curve.getPointAt(this.progress%1, this.dummyCurve);
-        this.progress+=0.001
-        this.camera.orthographicCamera.position.copy(this.dummyCurve)
+        this.lerp.current=GSAP.utils.interpolate(
+            this.lerp.current,
+            this.lerp.target,
+            this.lerp.ease
+        )
+        this.curve.getPointAt(this.lerp.current%1, this.position);
+        this.camera.orthographicCamera.position.copy(this.position);
+        this.directionalVector.subVectors(this.curve.getPointAt((this.lerp.current%1)+0.000001), this.position)
+        this.directionalVector.normalize();
+        this.crossVector.crossVectors(this.directionalVector, this.staticVector);
+        this.crossVector.multiplyScalar(100000);
+        this.camera.orthographicCamera.lookAt(this.crossVector)
+
+
+        // if(this.back){
+        //     this.lerp.target-=0.001;
+ 
+        // }
+        // else{
+        //     this.lerp.target+=0.001;
+
+        // }
+        // this.lerp.current=GSAP.utils.clamp(0,1,this.lerp.current);
+        // this.lerp.target=GSAP.utils.clamp(0,1,this.lerp.target);
+
+        // this.curve.getPointAt(this.lerp.current, this.position);
+        // this.curve.getPointAt(this.lerp.current+0.00001, this.lookAtPosition);
+
+        // // this.progress+=0.001
+        
+        // this.camera.orthographicCamera.position.copy(this.position)
+        // this.camera.orthographicCamera.lookAt(this.lookAtPosition)
     }
  }
