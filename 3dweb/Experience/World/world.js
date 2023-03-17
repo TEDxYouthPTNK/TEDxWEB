@@ -5,6 +5,7 @@ import Experience from "../Experience.js";
 import Crystal from "./crystal.js";
 import Environment from "./Environment.js";
 import Controls from "./controls.js";
+import Floor from "./floor.js";
 import { EventEmitter } from "events";
 export default class World extends EventEmitter{
     constructor(){
@@ -16,13 +17,13 @@ export default class World extends EventEmitter{
         this.camera = this.experience.camera;
         this.resources = this.experience.resources;
         this.theme = this.experience.theme;
-
-
+ 
 
 
         this.resources.on("ready",()=>{
             this.environment= new Environment();
             this.crystal= new Crystal();
+            this.floor =  new Floor();
             this.controls= new Controls();
         })
         // this.crystal= new Crystal();
