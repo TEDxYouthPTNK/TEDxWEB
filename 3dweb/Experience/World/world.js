@@ -6,6 +6,7 @@ import Crystal from "./crystal.js";
 import Environment from "./Environment.js";
 import Controls from "./controls.js";
 import Floor from "./floor.js";
+import Particles from "./particles.js";
 import { EventEmitter } from "events";
 export default class World extends EventEmitter{
     constructor(){
@@ -24,6 +25,7 @@ export default class World extends EventEmitter{
             this.environment= new Environment();
             this.crystal= new Crystal();
             this.floor =  new Floor();
+            // this.particles = new Particles();
             this.controls= new Controls();
         })
         // this.crystal= new Crystal();
@@ -32,6 +34,9 @@ export default class World extends EventEmitter{
     update(){
         if(this.crystal){
             this.crystal.update();
+        }
+        if(this.particles){
+            this.particles.update();
         }
         if(this.controls){
             this.controls.update();

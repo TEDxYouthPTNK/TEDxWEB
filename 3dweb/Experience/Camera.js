@@ -46,17 +46,17 @@ export default class Camera {
 
         this.scene.add(this.orthographicCamera);
 
-        this.helper = new THREE.CameraHelper(this.orthographicCamera);
-        this.scene.add(this.helper);
+        // this.helper = new THREE.CameraHelper(this.orthographicCamera);
+        // this.scene.add(this.helper);
 
         const size = 20;
         const divisions = 20;
 
-        const gridHelper = new THREE.GridHelper(size, divisions);
-        this.scene.add(gridHelper);
+        // const gridHelper = new THREE.GridHelper(size, divisions);
+        // this.scene.add(gridHelper);
 
-        const axesHelper = new THREE.AxesHelper(10);
-        this.scene.add(axesHelper);
+        // const axesHelper = new THREE.AxesHelper(10);
+        // this.scene.add(axesHelper);
     }
 
     setOrbitControls() {
@@ -85,9 +85,9 @@ export default class Camera {
         this.controls.update();
         // console.log(this.perspectiveCamera.position)
 
-        this.helper.matrixWorldNeedsUpdate = true;
-        this.helper.update();
-        this.helper.position.copy(this.orthographicCamera.position);
-        this.helper.rotation.copy(this.orthographicCamera.rotation);
+        // this.helper.matrixWorldNeedsUpdate = true;
+        // this.helper.update();
+        // this.helper.position.copy(this.orthographicCamera.position);
+        // this.helper.rotation.copy(this.orthographicCamera.rotation);
     }
 }
