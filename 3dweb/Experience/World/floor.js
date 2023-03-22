@@ -5,17 +5,20 @@ export default class Floor {
     constructor() {
         this.experience = new Experience();
         this.scene = this.experience.scene;
+        const m4 = new THREE.MeshBasicMaterial({color: 'rgb(255,0,0)'});   // red
 
         this.setFloor();
         this.setCircles();
     }
 
     setFloor() {
+
         this.geometry = new THREE.PlaneGeometry(1000, 1000);
         this.material = new THREE.MeshStandardMaterial({
             color: 0xffe6a2,
             side: THREE.BackSide,
         });
+
         this.plane = new THREE.Mesh(this.geometry, this.material);
         this.scene.add(this.plane);
         this.plane.rotation.x = Math.PI/2;

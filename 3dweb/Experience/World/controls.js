@@ -67,7 +67,7 @@ export default class Controls extends EventEmitter{
         const t = 0.5; // tùy ý
         const point = this.curve.getPoint(t);
         this.curve.points.forEach((p, i) => {
-            this.curve.points[i] = new THREE.Vector3(p.x, p.y+3, p.z);
+            this.curve.points[i] = new THREE.Vector3(p.x, p.y+2, p.z);
         });
     }
     resize(){}

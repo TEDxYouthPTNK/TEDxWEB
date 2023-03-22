@@ -12,15 +12,15 @@ export default class Particles {
 
     init() {
 
-        HEIGHT = window.innerHeight;
-        WIDTH = window.innerWidth;
-        windowHalfX = WIDTH / 2;
-        windowHalfY = HEIGHT / 2;
+        this.HEIGHT = window.innerHeight;
+        this.WIDTH = window.innerWidth;
+        this.windowHalfX = this.WIDTH / 2;
+        this.windowHalfY = this.HEIGHT / 2;
 
-        fieldOfView = 75;
-        aspectRatio = WIDTH / HEIGHT;
-        nearPlane = 1;
-        farPlane = 3000;
+        this.fieldOfView = 75;
+        this.aspectRatio = this.WIDTH / this.HEIGHT;
+        this.nearPlane = 1;
+        this.farPlane = 3000;
 
         /* 	fieldOfView — Camera frustum vertical field of view.
 	aspectRatio — Camera frustum aspect ratio.
@@ -34,40 +34,39 @@ export default class Particles {
 	that lies between two parallel planes cutting it. - wikipedia.		*/
 
         // cameraZ = farPlane / 3; /*	So, 1000? Yes! move on!	*/
-        fogHex = 0x000000; /* As black as your heart.	*/
-        fogDensity = 0.0007; /* So not terribly dense?	*/
+        this.fogHex = 0x000000; /* As black as your heart.	*/
+        this.fogDensity = 0.0007; /* So not terribly dense?	*/
 
         // camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
         // camera.position.z = cameraZ;
 
-        scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(fogHex, fogDensity);
+        this.scene.fog = new THREE.FogExp2(this.fogHex, this.fogDensity);
 
-        container = document.createElement('div');
-        document.body.appendChild(container);
+        this.container = document.createElement('div');
+        document.body.appendChild(this.container);
         document.body.style.margin = 0;
         document.body.style.overflow = 'hidden';
 
-        geometry = new THREE.Geometry(); /*	NO ONE SAID ANYTHING ABOUT MATH! UGH!	*/
+        this.geometry = new THREE.Geometry(); /*	NO ONE SAID ANYTHING ABOUT MATH! UGH!	*/
 
-        particleCount = 20000; /* Leagues under the sea */
+        this.particleCount = 20000; /* Leagues under the sea */
 
         /*	Hope you took your motion sickness pills;
 	We're about to get loopy.	*/
 
-        for (i = 0; i < particleCount; i++) {
+        for (i = 0; i < this.particleCount; i++) {
 
             var vertex = new THREE.Vector3();
             vertex.x = Math.random() * 2000 - 1000;
             vertex.y = Math.random() * 2000 - 1000;
             vertex.z = Math.random() * 2000 - 1000;
 
-            geometry.vertices.push(vertex);
+            this.geometry.vertices.push(vertex);
         }
 
         /*	We can't stop here, this is bat country!	*/
 
-        parameters = [
+        this.parameters = [
             [
                 [1, 1, 0.5], 5
             ],
@@ -84,27 +83,27 @@ export default class Particles {
                 [0.80, 1, 0.5], 1
             ]
         ];
-        parameterCount = parameters.length;
+        this.parameterCount = this.parameters.length;
 
         /*	I told you to take those motion sickness pills.
 	Clean that vommit up, we're going again!	*/
 
-        for (i = 0; i < parameterCount; i++) {
+        for (i = 0; i < this.parameterCount; i++) {
 
-            color = parameters[i][0];
-            size = parameters[i][1];
+            this.color = parameters[i][0];
+            this.size = parameters[i][1];
 
-            materials[i] = new THREE.PointCloudMaterial({
+            this.materials[i] = new THREE.PointCloudMaterial({
                 size: size
             });
 
-            particles = new THREE.PointCloud(geometry, materials[i]);
+            this.particles = new THREE.PointCloud(geometry, materials[i]);
 
-            particles.rotation.x = Math.random() * 6;
-            particles.rotation.y = Math.random() * 6;
-            particles.rotation.z = Math.random() * 6;
+            this.particles.rotation.x = Math.random() * 6;
+            this.particles.rotation.y = Math.random() * 6;
+            this.particles.rotation.z = Math.random() * 6;
 
-            scene.add(particles);
+            this.scene.add(particles);
         }
 
         /*	If my calculations are correct, when this baby hits 88 miles per hour...
@@ -114,7 +113,7 @@ export default class Particles {
         // renderer.setPixelRatio(window.devicePixelRatio); /*	Probably 1; unless you're fancy.	*/
         // renderer.setSize(WIDTH, HEIGHT); /*	Full screen baby Wooooo!	*/
 
-        container.appendChild(renderer.domElement); /* Let's add all this crazy junk to the page.	*/
+        this.container.appendChild(renderer.domElement); /* Let's add all this crazy junk to the page.	*/
 
         /*	I don't know about you, but I like to know how bad my
 		code is wrecking the performance of a user's machine.
@@ -124,7 +123,7 @@ export default class Particles {
         stats.domElement.style.position = 'absolute';
         stats.domElement.style.top = '0px';
         stats.domElement.style.right = '0px';
-        container.appendChild(stats.domElement);
+        this.container.appendChild(stats.domElement);
 
         /* Event Listeners */
 
