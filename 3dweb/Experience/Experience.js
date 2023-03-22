@@ -6,6 +6,7 @@ import Time from "./utils/time.js";
 import Resources from "./utils/resources.js";
 import assets from "./utils/assets.js";
 import World from "./World/world.js";
+import Themes from "./theme.js";
 export default class Experience{
     static instance;
     constructor(canvas){
@@ -21,6 +22,7 @@ export default class Experience{
             this.renderer=new Renderer();
             this.resources= new Resources(assets);
             this.time=new Time();
+            this.theme= new Themes();
             this.world=new World();
             this.time.on("update", ()=>{
                 this.update();

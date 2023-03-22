@@ -1,8 +1,8 @@
+
 import * as THREE from "three";
 import Experience from "../Experience.js";
-// import GSAP from "gsap";
-// import GUI from "lil-gui";
-
+import GSAP from "gsap";
+import GUI from "lil-gui";
 export default class Environment {
     constructor() {
         this.experience = new Experience();
@@ -36,8 +36,8 @@ export default class Environment {
         this.sunLight.shadow.camera.far = 20;
         this.sunLight.shadow.mapSize.set(2048, 2048);
         this.sunLight.shadow.normalBias = 0.05;
-        // const helper = new THREE.CameraHelper(this.sunLight.shadow.camera);
-        // this.scene.add(helper);
+        const helper = new THREE.CameraHelper(this.sunLight.shadow.camera);
+        this.scene.add(helper);
 
         this.sunLight.position.set(-1.5, 7, 3);
         this.scene.add(this.sunLight);
@@ -47,7 +47,7 @@ export default class Environment {
     }
 
     switchTheme(theme) {
-        // console.log(this.sunLight);
+        console.log(this.sunLight);
         if (theme === "dark") {
             GSAP.to(this.sunLight.color, {
                 r: 0.17254901960784313,

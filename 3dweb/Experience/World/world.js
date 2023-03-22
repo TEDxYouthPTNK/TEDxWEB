@@ -28,7 +28,15 @@ export default class World extends EventEmitter{
             // this.particles = new Particles();
             this.controls= new Controls();
         })
+        this.theme.on("switch", (theme)=>{
+            this.switchTheme(theme);
+        })
         // this.crystal= new Crystal();
+    }
+    switchTheme(theme){
+        if(this.environment){
+            this.environment.switchTheme(theme);
+        }
     }
     resize(){}
     update(){

@@ -13,17 +13,19 @@ export default class Controls extends EventEmitter{
         this.experience = new Experience();
         this.scene = this.experience.scene;
         this.resources = this.experience.resources;
+        this.sizes=this.experience.sizes;
         this.camera = this.experience.camera;
         this.world = new World();
-
         this.time = this.experience.time;
         this.progress=0;
         this.dummyCurve= new THREE.Vector3(0,0,0);
+        this.crystal=this.experience.world.crystal.actualCrystal;
         this.lerp={
             current:0,
             target:0,
             ease:0.1,
         }
+        GSAP.registerPlugin(ScrollTrigger);
         this.position= new THREE.Vector3(0,0,0);
         this.lookAtPosition= new THREE.Vector3(0,0,0);
 
@@ -31,9 +33,27 @@ export default class Controls extends EventEmitter{
         this.staticVector= new THREE.Vector3(0,1,0);
         this.crossVector= new THREE.Vector3();
 
-
+        this.slide();
         this.setPath();
         this.onWheel();
+    }
+    setScrollTrigger(){
+        ScrollTrigger.matchMedia({
+	
+            // Desktop
+            "(min-width: 969px)": () => {
+                console.log("desktop");
+            },
+            // Mobile
+            "(max-width: 968px)": () => {
+                console.log("mobile");
+
+            },
+              
+            // all 
+            "all": function() {
+            }
+          }); 
     }
     onWheel(){
         window.addEventListener("wheel", (e)=>{
@@ -47,6 +67,49 @@ export default class Controls extends EventEmitter{
                 this.back=true;
             }
         })
+    }
+    slide(){
+        this.timeline=new GSAP.timeline();
+        this.timeline.to(this.crystal.position,{
+            x:()=>{return -this.sizes.width*0.0021},
+            z:5,
+            scrollTrigger:{
+                trigger: ".first-move",
+                markers: true,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.5,
+                invalidateOnRefresh: true,
+            },
+            
+        });
+        this.timeline.to(this.crystal.position,{
+            x:()=>{return this.sizes.width*0.0021},
+            z:5,
+            scrollTrigger:{
+                trigger: ".second-move",
+                markers: true,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.5,
+                invalidateOnRefresh: true,
+            },
+            
+        });
+        this.timeline.to(this.crystal.position,{
+            x:()=>{return this.sizes.width*0.0021},
+            z:-5,
+            scrollTrigger:{
+                trigger: ".third-move",
+                markers: true,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.5,
+                invalidateOnRefresh: true,
+            },
+            
+        });
+        console.log(this.crystal)
     }
     setPath(){
         this.curve = new THREE.CatmullRomCurve3( [
@@ -69,6 +132,8 @@ export default class Controls extends EventEmitter{
         this.curve.points.forEach((p, i) => {
             this.curve.points[i] = new THREE.Vector3(p.x, p.y+2, p.z);
         });
+
+
     }
     resize(){}
     update(){
