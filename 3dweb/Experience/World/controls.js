@@ -153,15 +153,15 @@ export default class Controls extends EventEmitter{
         this.camera.orthographicCamera.lookAt(0,0,0)
 
         //camera momentum
-        if(this.back){
-            this.lerp.target-=0.0001;
+        // if(this.back){
+        //     this.lerp.target-=0.0001;
  
-        }
-        else{
-            this.lerp.target+=0.0001;
+        // }
+        // else{
+        //     this.lerp.target+=0.0001;
 
-        }
-
+        // }
+        
         // this.curve.getPointAt(this.lerp.current, this.position);
         // this.curve.getPointAt(this.lerp.current+0.00001, this.lookAtPosition);
 

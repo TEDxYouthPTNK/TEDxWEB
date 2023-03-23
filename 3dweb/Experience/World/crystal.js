@@ -66,6 +66,6 @@ export default class Crystal extends EventEmitter{
         )
         // this.crystal.update()
         this.actualCrystal.rotation.y=this.lerp.current;
-        this.actualCrystal.positionY=Math.sin(this.elapsed);
+        // this.actualCrystal.positionY=Math.sin(this.elapsed);
     }
  }
