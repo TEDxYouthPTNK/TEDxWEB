@@ -2,7 +2,7 @@ export default [
     {
         name: "crystal",
         type: "glbModel",
-        path: "/model/crystal_beta_2.glb",
+        path: "/model/crystal_beta_3.glb",
     },
     {
         name: "screen",

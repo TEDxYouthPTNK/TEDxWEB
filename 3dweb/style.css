@@ -24,8 +24,9 @@ svg{
 
 :root{
   /* Light Theme Variables */
-  --color-text-light: #333332;
-  --color-background-light: #c7513f;
+  --color-text-light: #f2f2e8;
+  --color-title-light: #000000;
+  --color-background-light: #000000;
   --color-pink-light: #e5a1aa;
   --color-green-light: #7AD0AC;
   --color-blue-light: #5468a3;
@@ -36,6 +37,7 @@ svg{
 }
 
 .light-theme{
+  --color-title: var(--color-title-light);
   --color-text: var(--color-text-light);
   --color-background: var(--color-background-light);
   --color-pink: var(--color-pink-light);
@@ -389,14 +391,14 @@ svg{
   position: absolute;
   bottom: 168px;
   left: 0;
-  color: var(--color-text);
+  color: var(--color-title);
 }
 
 .hero-second{
   position: absolute;
   top: calc(50% - 120px);
   right: 0;
-  color: var(--color-text);
+  color: var(--color-title);
 }
 
 .hero-main-title{
