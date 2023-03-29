@@ -5,6 +5,9 @@ import { EventEmitter } from "events";
 import GSAP from "gsap";
 import Time from "../utils/time";
 import { DragControls } from 'three/addons/controls/DragControls.js';
+import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
+import ASScroll from "@ashthornton/asscroll";
+
 import World from "./world";
 import Renderer from "../Renderer";
 export default class Controls extends EventEmitter{
@@ -28,51 +31,216 @@ export default class Controls extends EventEmitter{
         GSAP.registerPlugin(ScrollTrigger);
         this.position= new THREE.Vector3(0,0,0);
         this.lookAtPosition= new THREE.Vector3(0,0,0);
-
+        this.angle=0;
         this.directionalVector= new THREE.Vector3();
         this.staticVector= new THREE.Vector3(0,1,0);
         this.crossVector= new THREE.Vector3();
-
+        this.box = new THREE.Box3().setFromObject(this.crystal);
+        // this.box.center( this.crystal.position ); // this re-sets the mesh position
+        this.crystal.position.multiplyScalar( - 1 );
+        this.axis= new THREE.Vector3( 0, 1, 0 );;
+        // this.pivot = new THREE.Group();
+        // this.scene.add( this.pivot );
+        // this.pivot.add( this.crystal );
         this.slide();
-        this.setPath();
-        this.onWheel();
+        // this.setPath();
+        this.animate();
+        this.setScrollTrigger();
+        // this.setSmoothScroll();
+    }
+    setupASScroll() {
+        // https://github.com/ashthornton/asscroll
+        const asscroll = new ASScroll({
+            ease: 1,
+            disableRaf: true,
+        });
+
+        GSAP.ticker.add(asscroll.update);
+
+        ScrollTrigger.defaults({
+            scroller: asscroll.containerElement,
+        });
+
+        ScrollTrigger.scrollerProxy(asscroll.containerElement, {
+            scrollTop(value) {
+                if (arguments.length) {
+                    asscroll.currentPos = value;
+                    return;
+                }
+                return asscroll.currentPos;
+            },
+            getBoundingClientRect() {
+                return {
+                    top: 0,
+                    left: 0,
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                };
+            },
+            fixedMarkers: true,
+        });
+
+        asscroll.on("update", ScrollTrigger.update);
+        ScrollTrigger.addEventListener("refresh", asscroll.resize);
+
+        requestAnimationFrame(() => {
+            asscroll.enable({
+                newScrollElements: document.querySelectorAll(
+                    ".gsap-marker-start, .gsap-marker-end, [asscroll]"
+                ),
+            });
+        });
+        return asscroll;
+    }
+    setSmoothScroll(){
+        this.asscroll = this.setupASScroll();
     }
     setScrollTrigger(){
         ScrollTrigger.matchMedia({
-	
-            // Desktop
-            "(min-width: 969px)": () => {
-                console.log("desktop");
+            //desktop
+            "(min-width: 969px)":()=>{
+                console.log("fired desktop");
+                //first section---------------------------
+                this.firstMoveTimeline= new GSAP.timeline({
+                    scrollTrigger:{
+                        trigger: ".first-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    }
+                });
+                this.firstMoveTimeline.to(this.crystal.position,{
+                    x:()=>{
+                        return this.sizes.width*0.005;
+                    },
+                })
+                //Second section------------------------------
+                this.secondMoveTimeline= new GSAP.timeline({
+                    scrollTrigger:{
+                        trigger: ".second-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    }
+                });
+                this.secondMoveTimeline.to(this.crystal.position,{
+                    x:()=>{
+                        return -5;
+                    },
+                    z:()=>{
+                        return this.sizes.height*0.005;
+                    },
+                    // y:()=>{
+                    //     return -2;
+                    // }
+                },"same");
+                this.secondMoveTimeline.to(this.crystal.scale,{
+                    x:2.5,
+                    y:2.5,
+                    z:2.5,
+                },"same");
+                //Third-section---------------------------
+                this.thirdMoveTimeline= new GSAP.timeline({
+                    scrollTrigger:{
+                        trigger: ".third-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    }
+                });
+                this.thirdMoveTimeline.to(this.crystal.rotation,{
+                    y:10,
+                },"now")
+                this.thirdMoveTimeline.to(this.crystal.scale,{
+                    x:1.5,
+                    y:1.5,
+                    z:1.5,
+                },"same");
+                this.thirdMoveTimeline.to(this.crystal.position,{
+                    y:2,
+                    x:5,
+                    // x:()=>{
+                    //     return 20;
+                    // }
+                },"same")
             },
-            // Mobile
-            "(max-width: 968px)": () => {
-                console.log("mobile");
+            //mobile
+            "(max-width: 968px)": () => {},
+            all:()=>{
+                this.sections = document.querySelectorAll(".section");
+                this.sections.forEach((section) => {
+                    this.progressWrapper =
+                        section.querySelector(".progress-wrapper");
+                    this.progressBar = section.querySelector(".progress-bar");
 
-            },
-              
-            // all 
-            "all": function() {
-            }
-          }); 
-    }
-    onWheel(){
-        window.addEventListener("wheel", (e)=>{
-            // console.log(e);
-            if(e.deltaY>0){
-                this.lerp.target+=0.001;
-                this.back=false;
-            }
-            else{
-                this.lerp.target-=0.001;
-                this.back=true;
+                    if (section.classList.contains("right")) {
+                        GSAP.to(section, {
+                            borderTopLeftRadius: 10,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top bottom",
+                                end: "top top",
+                                scrub: 0.6,
+                            },
+                        });
+                        GSAP.to(section, {
+                            borderBottomLeftRadius: 700,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "bottom bottom",
+                                end: "bottom top",
+                                scrub: 0.6,
+                            },
+                        });
+                    } else {
+                        GSAP.to(section, {
+                            borderTopRightRadius: 10,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top bottom",
+                                end: "top top",
+                                scrub: 0.6,
+                            },
+                        });
+                        GSAP.to(section, {
+                            borderBottomRightRadius: 700,
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "bottom bottom",
+                                end: "bottom top",
+                                scrub: 0.6,
+                            },
+                        });
+                    }
+                    GSAP.from(this.progressBar, {
+                        scaleY: 0,
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top top",
+                            end: "bottom bottom",
+                            scrub: 0.4,
+                            pin: this.progressWrapper,
+                            pinSpacing: false,
+                        },
+                    });
+                });
             }
         })
+    }
+    animate(){
+        // requestAnimationFrame(this.animate);
+        // this.axis.copy(this.crystal.position);
+        // this.crystal.rotateOnAxis(this.axis,0.1)
+        this.crystal.rotation.y+=this.lerp.current;
     }
     slide(){
         this.timeline=new GSAP.timeline();
         this.timeline.to(this.crystal.position,{
-            x:()=>{return -this.sizes.width*0.0021},
-            z:5,
+            x:()=>{return this.sizes.width*0.003},
+            // z:5,
             scrollTrigger:{
                 trigger: ".first-move",
                 markers: true,
@@ -84,8 +252,8 @@ export default class Controls extends EventEmitter{
             
         });
         this.timeline.to(this.crystal.position,{
-            x:()=>{return this.sizes.width*0.0021},
-            z:5,
+            x:()=>{return -this.sizes.width*0.003},
+            // z:-5,
             scrollTrigger:{
                 trigger: ".second-move",
                 markers: true,
@@ -97,8 +265,8 @@ export default class Controls extends EventEmitter{
             
         });
         this.timeline.to(this.crystal.position,{
-            x:()=>{return this.sizes.width*0.0021},
-            z:-5,
+            x:()=>{return this.sizes.width*0.003},
+            // z:-5,
             scrollTrigger:{
                 trigger: ".third-move",
                 markers: true,
@@ -111,56 +279,32 @@ export default class Controls extends EventEmitter{
         });
         console.log(this.crystal)
     }
-    setPath(){
-        this.curve = new THREE.CatmullRomCurve3( [
-            new THREE.Vector3(-10,0,0),
-            new THREE.Vector3(0,0,-10),
-            new THREE.Vector3(10,0,0),
-            new THREE.Vector3(0,0,10),
-
-        ], false );
-        // const points = this.curve.getPoints( 50 );
-        // const geometry = new THREE.BufferGeometry().setFromPoints( points );
-        
-        // const material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
-        
-        // Create the final object to add to the scene
-        // const curveObject = new THREE.Line( geometry, material );
-        // this.scene.add(curveObject);
-        const t = 0.5; // tùy ý
-        const point = this.curve.getPoint(t);
-        this.curve.points.forEach((p, i) => {
-            this.curve.points[i] = new THREE.Vector3(p.x, p.y+2, p.z);
-        });
-
-
-    }
-    resize(){}
     update(){
         this.lerp.current=GSAP.utils.interpolate(
             this.lerp.current,
             this.lerp.target,
             this.lerp.ease
         )
-        this.lerp.current=GSAP.utils.clamp(0,1,this.lerp.current);
-        this.lerp.target=GSAP.utils.clamp(0,1,this.lerp.target);
-        this.curve.getPointAt(this.lerp.current%1, this.position);
-        this.camera.orthographicCamera.position.copy(this.position);
-        this.directionalVector.subVectors(this.curve.getPointAt((this.lerp.current%1)+0.000001), this.position)
-        this.directionalVector.normalize();
-        this.crossVector.crossVectors(this.directionalVector, this.staticVector);
-        this.crossVector.multiplyScalar(100000);
-        this.camera.orthographicCamera.lookAt(0,0,0)
+        this.lerp.current=GSAP.utils.clamp(0,0.5,this.lerp.current);
+        this.lerp.target=GSAP.utils.clamp(0,0.4,this.lerp.target);
+        // this.curve.getPointAt(this.lerp.current%1, this.position);
+        // this.camera.orthographicCamera.position.copy(this.position);
+        // this.directionalVector.subVectors(this.curve.getPointAt((this.lerp.current%1)+0.000001), this.position)
+        // this.directionalVector.normalize();
+        // this.crossVector.crossVectors(this.directionalVector, this.staticVector);
+        // this.crossVector.multiplyScalar(100000);
+        // this.camera.orthographicCamera.lookAt(0,0,0)
 
+        // this.pivot.rotation.y += this.lerp.target*0.01;
         //camera momentum
-        // if(this.back){
-        //     this.lerp.target-=0.0001;
+        if(this.back){
+            this.lerp.target-=0.0001;
  
-        // }
-        // else{
-        //     this.lerp.target+=0.0001;
+        }
+        else{
+            this.lerp.target+=0.0001;
 
-        // }
+        }
         
         // this.curve.getPointAt(this.lerp.current, this.position);
         // this.curve.getPointAt(this.lerp.current+0.00001, this.lookAtPosition);

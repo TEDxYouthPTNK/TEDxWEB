@@ -24,17 +24,17 @@ svg{
 
 :root{
   /* Light Theme Variables */
-  --color-text-light: #f2f2e8;
-  --color-title-light: #000000;
-  --color-background-light: #000000;
+  --color-text-light: #333332;
+  --color-background-light: #FAF4E5;
   --color-pink-light: #e5a1aa;
   --color-green-light: #7AD0AC;
-  --color-blue-light: #5468a3;
+  --color-blue-light: #8395CD;
 
   /* Dark Theme Variables */
   --color-text-dark: #FAF4E5;
-  --color-background-dark: #30437d;
+  --color-background-dark: #8395CD;
 }
+
 
 .light-theme{
   --color-title: var(--color-title-light);
@@ -395,9 +395,9 @@ svg{
 }
 
 .hero-second{
-  position: absolute;
-  top: calc(50% - 120px);
-  right: 0;
+  position: fixed;
+  top: calc(50% + 150px);
+  right: 120px;
   color: var(--color-title);
 }
 
@@ -412,8 +412,8 @@ svg{
 }
 
 .hero-second-subheading{
-  font-size: 32px;
-  text-transform: uppercase;
+  font-size: 16px;
+   text-transform: uppercase;
   color: var(--color-text);
 }
 
@@ -475,4 +475,19 @@ svg{
   .hero-second-subheading{
     font-size: 18px;
   }
+}
+
+
+
+#timer{
+  top: calc(50% + 150px);
+  right: 120px;
+  color: var(--color-title);
+  transform: translateY(150px);
+  opacity:0;
+  transition: all 2s ease; 
+}
+.active{
+  transform: translateY(0px);
+  opacity: 1;
 }
