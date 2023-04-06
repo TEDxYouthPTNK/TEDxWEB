@@ -25,7 +25,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path fill="currentColor" d="M12 21Q8.25 21 5.625 18.375Q3 15.75 3 12Q3 8.25 5.625 5.625Q8.25 3 12 3Q12.35 3 12.688 3.025Q13.025 3.05 13.35 3.1Q12.325 3.825 11.713 4.987Q11.1 6.15 11.1 7.5Q11.1 9.75 12.675 11.325Q14.25 12.9 16.5 12.9Q17.875 12.9 19.025 12.287Q20.175 11.675 20.9 10.65Q20.95 10.975 20.975 11.312Q21 11.65 21 12Q21 15.75 18.375 18.375Q15.75 21 12 21ZM12 19Q14.2 19 15.95 17.788Q17.7 16.575 18.5 14.625Q18 14.75 17.5 14.825Q17 14.9 16.5 14.9Q13.425 14.9 11.262 12.738Q9.1 10.575 9.1 7.5Q9.1 7 9.175 6.5Q9.25 6 9.375 5.5Q7.425 6.3 6.213 8.05Q5 9.8 5 12Q5 14.9 7.05 16.95Q9.1 19 12 19ZM11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Z"/></svg>
       </div>
     </div>
-      <div class="page-wrapper" asscroll>
+    <div class="page-wrapper" asscroll>
+        <!-- <div class="center">
+          <div class="ring"></div>
+          <span>Loading...</span>
+        </div> -->
         <section class="hero">
           <div class="hero-wrapper">
 
@@ -121,7 +125,26 @@
             <p class="section-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto eius nam cupiditate neque necessitatibus dolores voluptate officia. Illum molestias aliquid quas, rem, doloribus voluptatem eumcdistinctio nemo fugit nihil corrupti?</p>
             <h3 class="section-heading">Lorem Ipsum</h3>
             <p class="section-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto eius nam cupiditate neque necessitatibus dolores voluptate officia. Illum molestias aliquid quas, rem, doloribus voluptatem eum distinctio nemo fugit nihil corrupti?</p>
-            <div class="reveal" id="timer"></div>
+            <section class="timer">
+              <div id="countdown" class="countdown">
+                <div class="time">
+                  <h2 id="days"></h2>
+                  <small>Days</small>
+                </div>
+                <div class="time">
+                  <h2 id="hours"></h2>
+                  <small>Hours</small>
+                </div>
+                <div class="time">
+                  <h2 id="minutes"></h2>
+                  <small>Minutes</small>
+                </div>
+                <div class="time">
+                  <h2 id="seconds"></h2>
+                  <small>Seconds</small>
+                </div>
+              </div>
+            </section>
           </div>
         </section>
       </div>
@@ -129,6 +152,34 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
       <script type="text/javascript" src="js/particles.min.js"></script>
       <script type="text/javascript" src="js/custom.js"></script>
+    </script>
+    <script type="text/javascript">
+      const days=document.querySelectorAll('days');
+      const hours=document.querySelectorAll('hours');
+      const minutes=document.querySelectorAll('minusts');
+      const seconds=document.querySelectorAll('secondons');
+      const currentYear=new Date().getFullYear();
+      const firstTargetYear=  new Date('May 14, 2023');
+      const timeZoneOffset = new Date().getTimezoneOffset();
+      const fireZoneOffsetMs = timeZoneOffset * 60 * 1000; // convert minutes to milliseconds
+      const targetYear = new Date(firstTargetYear.getTime() + fireZoneOffsetMs);
+
+      function updateCountdown(){
+        const currentTime=new Date().getTime();
+        const diff=targetYear-currentTime;
+        // console.log(diff);
+        const d=Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h=Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m=Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s=Math.floor((diff % (1000 * 60)) / 1000);
+        // console.log(s);
+
+        document.getElementById('days').innerHTML=d;
+        document.getElementById('hours').innerHTML=h<10? '0'+h:h;
+        document.getElementById('minutes').innerHTML=h<10? '0'+m :m;
+        document.getElementById('seconds').innerHTML=s<10? '0'+s :s;
+      }
+      setInterval(updateCountdown, 1000)
     </script>
     <script type="text/javascript">
         window.addEventListener('scroll',reveal);
@@ -148,7 +199,7 @@
             }
         }
     </script>
-      <script>
+      <!-- <script>
         // Set the target date and time
         var targetDate = new Date("2023-05-14T08:00:00");
 
@@ -178,7 +229,18 @@
             timerElement.innerHTML = "Time's up!";
           }
         }, 1000); // Update the timer every second
-      </script>
+      </script> -->
 </body>
+<!-- <footer>
+  <a class="dot dot-0">0</a>
+  <a class="dot dot-1">0.2</a>
+  <a class="dot dot-2">0.4</a>
+  <a class="dot dot-3">0.6</a>
+  <a class="dot dot-4">0.8</a>
+  <a class="dot dot-5">1</a>
+  <div class="footer-progress-wrapper">
+	<div class="footer-progress"></div>
+  </div>
+</footer> -->
 
 </html>

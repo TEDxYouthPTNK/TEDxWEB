@@ -27,6 +27,7 @@ export default class World extends EventEmitter{
             this.floor =  new Floor();
             // this.particles = new Particles();
             this.controls= new Controls();
+            this.emit("worldready");
         })
         this.theme.on("switch", (theme)=>{
             this.switchTheme(theme);

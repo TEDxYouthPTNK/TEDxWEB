@@ -112,7 +112,7 @@ export default class Controls extends EventEmitter{
                 });
                 this.firstMoveTimeline.to(this.crystal.position,{
                     x:()=>{
-                        return this.sizes.width*0.005;
+                        return this.sizes.width*0.004;
                     },
                 })
                 //Second section------------------------------
@@ -152,7 +152,7 @@ export default class Controls extends EventEmitter{
                     }
                 });
                 this.thirdMoveTimeline.to(this.crystal.rotation,{
-                    y:10,
+                    y: Math.PI/4,
                 },"now")
                 this.thirdMoveTimeline.to(this.crystal.scale,{
                     x:1.5,

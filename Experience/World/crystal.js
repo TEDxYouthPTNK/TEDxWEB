@@ -43,7 +43,7 @@ export default class Crystal extends EventEmitter{
         this.actualCrystal.add( rectLight );
 
         const rectLightHelper = new RectAreaLightHelper( rectLight );
-        rectLight.add( rectLightHelper );
+        // rectLight.add( rectLightHelper );
         this.scene.add(this.actualCrystal)
     }
     setAnimation(){
