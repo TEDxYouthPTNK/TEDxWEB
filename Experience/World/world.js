@@ -3,7 +3,7 @@ import * as THREE from "three";
 import Experience from "../Experience.js";
 
 import Crystal from "./crystal.js";
-import Environment from "./Environment.js";
+import Environment from "./environment.js";
 import Controls from "./controls.js";
 import Floor from "./floor.js";
 import Particles from "./particles.js";
