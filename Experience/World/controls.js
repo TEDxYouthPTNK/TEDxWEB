@@ -243,7 +243,7 @@ export default class Controls extends EventEmitter{
             // z:5,
             scrollTrigger:{
                 trigger: ".first-move",
-                markers: true,
+                // markers: true,
                 start: "top top",
                 end: "bottom bottom",
                 scrub: 0.5,
@@ -256,7 +256,7 @@ export default class Controls extends EventEmitter{
             // z:-5,
             scrollTrigger:{
                 trigger: ".second-move",
-                markers: true,
+                // markers: true,
                 start: "top top",
                 end: "bottom bottom",
                 scrub: 0.5,
@@ -269,7 +269,7 @@ export default class Controls extends EventEmitter{
             // z:-5,
             scrollTrigger:{
                 trigger: ".third-move",
-                markers: true,
+                // markers: true,
                 start: "top top",
                 end: "bottom bottom",
                 scrub: 0.5,

@@ -3,11 +3,12 @@ import * as THREE from "three";
 import Experience from "../Experience.js";
 import GSAP from "gsap";
 import GUI from "lil-gui";
+import Crystal from "./crystal.js";
 export default class Environment {
     constructor() {
         this.experience = new Experience();
         this.scene = this.experience.scene;
-
+        this.crystal = new Crystal;
         // this.gui = new GUI({ container: document.querySelector(".hero-main") });
         this.obj = {
             colorObj: { r: 0, g: 0, b: 0 },
@@ -60,10 +61,10 @@ export default class Environment {
                 b: 0.6862745098039216,
             });
             GSAP.to(this.sunLight, {
-                intensity: 0.78,
+                intensity: 2,
             });
             GSAP.to(this.ambientLight, {
-                intensity: 0.78,
+                intensity: 2,
             });
         } else {
             GSAP.to(this.sunLight.color, {
@@ -77,10 +78,10 @@ export default class Environment {
                 b: 255 / 255,
             });
             GSAP.to(this.sunLight, {
-                intensity: 3,
+                intensity: 0.75,
             });
             GSAP.to(this.ambientLight, {
-                intensity: 1,
+                intensity: 0.75,
             });
         }
     }
