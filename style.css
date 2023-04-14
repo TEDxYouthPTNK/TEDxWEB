@@ -665,8 +665,8 @@ footer {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  background: #eb0028;
-  color: #ffffff;
+  background: var(--color-background);
+  color: var(--color-text);
   padding: 20px;
   z-index: 1;
   -webkit-user-select: none;
@@ -676,7 +676,7 @@ footer {
 
 .menu-container a {
   text-decoration: none;
-  color: #eb0028;
+  color: var(--color-background);
   transition: color 0.3s ease;
 }
 

@@ -168,8 +168,89 @@ export default class Controls extends EventEmitter{
                 },"same")
             },
             //mobile
-            "(max-width: 968px)": () => {},
-            all:()=>{
+            "(max-width: 968px)": () => {
+                // console.log("fired mobile");
+                // Resets
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+
+                // Calculate the center point of the window
+                const centerX = width / 2;
+                const centerY = height / 2;
+
+
+                this.crystal.scale.set(0.7, 0.7, 0.7);
+                this.crystal.position.set(0, 0, 0);
+                // this.rectLight.width = 0.3;
+                // this.rectLight.height = 0.4;
+                this.camera.orthographicCamera.position.set(0, 6.5, 10);
+
+                // First section -----------------------------------------
+                this.firstMoveTimeline = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: ".first-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    },
+                }).to(this.crystal.scale, {
+                    x: 0.1,
+                    y: 0.1,
+                    z: 0.1,
+                });
+
+                // Second section -----------------------------------------
+                this.secondMoveTimeline = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: ".second-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                    .to(
+                        this.crystal.scale,
+                        {
+                            x: 0.25,
+                            y: 0.25,
+                            z: 0.25,
+                        },
+                        "same"
+                    )
+                    // .to(
+                    //     this.rectLight,
+                    //     {
+                    //         width: 0.3 * 3.4,
+                    //         height: 0.4 * 3.4,
+                    //     },
+                    //     "same"
+                    // )
+                    .to(
+                        this.crystal.position,
+                        {
+                            x: 1.5,
+                        },
+                        "same"
+                    );
+
+                // Third section -----------------------------------------
+                this.thirdMoveTimeline = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: ".third-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    },
+                }).to(this.crystal.position, {
+                    z: -4.5,
+                });
+            },
+
+            // all
+            all: () => {
                 this.sections = document.querySelectorAll(".section");
                 this.sections.forEach((section) => {
                     this.progressWrapper =
