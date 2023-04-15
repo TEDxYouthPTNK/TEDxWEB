@@ -169,7 +169,7 @@ export default class Controls extends EventEmitter{
             },
             //mobile
             "(max-width: 968px)": () => {
-                // console.log("fired mobile");
+                console.log("fired mobile");
                 // Resets
                 const width = window.innerWidth;
                 const height = window.innerHeight;
