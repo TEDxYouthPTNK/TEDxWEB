@@ -195,10 +195,15 @@ export default class Controls extends EventEmitter{
                         invalidateOnRefresh: true,
                     },
                 }).to(this.crystal.scale, {
-                    x: 0.1,
-                    y: 0.1,
-                    z: 0.1,
-                });
+                    x: 3,
+                    y: 3,
+                    z: 3,
+                }).to(this.crystal.position,{
+                    x:5,
+                    y:0,
+                    z:5,
+                }
+                )
 
                 // Second section -----------------------------------------
                 this.secondMoveTimeline = new GSAP.timeline({

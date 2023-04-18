@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import Experience from "../Experience.js";
-
+import Renderer from "../Renderer.js";
 export default class Particles {
     constructor() {
         this.experience = new Experience();
+        // this.renderer= new Renderer();
         this.scene = this.experience.scene;
-
         this.init();
         this.animate();
     }
@@ -47,22 +47,23 @@ export default class Particles {
         document.body.style.margin = 0;
         document.body.style.overflow = 'hidden';
 
-        this.geometry = new THREE.Geometry(); /*	NO ONE SAID ANYTHING ABOUT MATH! UGH!	*/
+        this.geometry = new THREE.BufferGeometry(); /*	NO ONE SAID ANYTHING ABOUT MATH! UGH!	*/
 
         this.particleCount = 20000; /* Leagues under the sea */
+        const vertexData = new Float32Array(this.particleCount * 3);
 
         /*	Hope you took your motion sickness pills;
 	We're about to get loopy.	*/
 
-        for (i = 0; i < this.particleCount; i++) {
+    for (let i = 0; i < this.particleCount; i++) {
+        const index = i * 3;
+        vertexData[index] = Math.random() * 2000 - 1000;
+        vertexData[index + 1] = Math.random() * 2000 - 1000;
+        vertexData[index + 2] = Math.random() * 2000 - 1000;
+    }
+    const vertices = new THREE.Float32BufferAttribute(vertexData, 3);
+    this.geometry.setAttribute('position', vertices);
 
-            var vertex = new THREE.Vector3();
-            vertex.x = Math.random() * 2000 - 1000;
-            vertex.y = Math.random() * 2000 - 1000;
-            vertex.z = Math.random() * 2000 - 1000;
-
-            this.geometry.vertices.push(vertex);
-        }
 
         /*	We can't stop here, this is bat country!	*/
 
@@ -88,42 +89,42 @@ export default class Particles {
         /*	I told you to take those motion sickness pills.
 	Clean that vommit up, we're going again!	*/
 
-        for (i = 0; i < this.parameterCount; i++) {
+        for (let i = 0; i < this.parameterCount; i++) {
 
-            this.color = parameters[i][0];
-            this.size = parameters[i][1];
-
-            this.materials[i] = new THREE.PointCloudMaterial({
-                size: size
+            this.color = this.parameters[i][0];
+            this.size = this.parameters[i][1];
+            this.materials=[];
+            this.materials[i] = new THREE.PointsMaterial({
+                size: this.size
             });
 
-            this.particles = new THREE.PointCloud(geometry, materials[i]);
+            this.particles = new THREE.Points(this.geometry, this.materials[i]);
 
             this.particles.rotation.x = Math.random() * 6;
             this.particles.rotation.y = Math.random() * 6;
             this.particles.rotation.z = Math.random() * 6;
 
-            this.scene.add(particles);
+            this.scene.add(this.particles);
         }
 
         /*	If my calculations are correct, when this baby hits 88 miles per hour...
 	you're gonna see some serious shit.	*/
 
-        // renderer = new THREE.WebGLRenderer(); /*	Rendererererers particles.	*/
-        // renderer.setPixelRatio(window.devicePixelRatio); /*	Probably 1; unless you're fancy.	*/
-        // renderer.setSize(WIDTH, HEIGHT); /*	Full screen baby Wooooo!	*/
+        this.renderer = new THREE.WebGLRenderer(); /*	Rendererererers particles.	*/
+        this.renderer.setPixelRatio(window.devicePixelRatio); /*	Probably 1; unless you're fancy.	*/
+        this.renderer.setSize(this.WIDTH, this.HEIGHT); /*	Full screen baby Wooooo!	*/
 
-        this.container.appendChild(renderer.domElement); /* Let's add all this crazy junk to the page.	*/
+        this.container.appendChild(this.renderer.domElement); /* Let's add all this crazy junk to the page.	*/
 
         /*	I don't know about you, but I like to know how bad my
 		code is wrecking the performance of a user's machine.
 		Let's see some damn stats!	*/
 
-        stats = new Stats();
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.top = '0px';
-        stats.domElement.style.right = '0px';
-        this.container.appendChild(stats.domElement);
+        // this.stats = new Stats();
+        // this.stats.domElement.style.position = 'absolute';
+        // this.stats.domElement.style.top = '0px';
+        // this.stats.domElement.style.right = '0px';
+        // this.container.appendChild(stats.domElement);
 
         /* Event Listeners */
 
@@ -133,6 +134,12 @@ export default class Particles {
         document.addEventListener('touchmove', onDocumentTouchMove, false);
 
     }
+    onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    
 
     resize() {}
 
