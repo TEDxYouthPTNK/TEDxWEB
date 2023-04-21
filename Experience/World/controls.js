@@ -132,9 +132,9 @@ export default class Controls extends EventEmitter{
                     z:()=>{
                         return this.sizes.height*0.005;
                     },
-                    // y:()=>{
-                    //     return -2;
-                    // }
+                    y:()=>{
+                        return -1;
+                    }
                 },"same");
                 this.secondMoveTimeline.to(this.crystal.scale,{
                     x:2.5,
@@ -179,7 +179,7 @@ export default class Controls extends EventEmitter{
                 const centerY = height / 2;
 
 
-                this.crystal.scale.set(0.7, 0.7, 0.7);
+                // this.crystal.scale.set(0.7, 0.7, 0.7);
                 this.crystal.position.set(0, 0, 0);
                 // this.rectLight.width = 0.3;
                 // this.rectLight.height = 0.4;
@@ -199,59 +199,49 @@ export default class Controls extends EventEmitter{
                     y: 3,
                     z: 3,
                 }).to(this.crystal.position,{
-                    x:5,
+                    x:4,
                     y:0,
-                    z:5,
+                    z:4,
                 }
                 )
 
                 // Second section -----------------------------------------
-                this.secondMoveTimeline = new GSAP.timeline({
+                this.firstMoveTimeline = new GSAP.timeline({
                     scrollTrigger: {
-                        trigger: ".second-move",
+                        trigger: ".first-move",
                         start: "top top",
                         end: "bottom bottom",
                         scrub: 0.6,
                         invalidateOnRefresh: true,
                     },
-                })
-                    .to(
-                        this.crystal.scale,
-                        {
-                            x: 0.25,
-                            y: 0.25,
-                            z: 0.25,
-                        },
-                        "same"
-                    )
-                    // .to(
-                    //     this.rectLight,
-                    //     {
-                    //         width: 0.3 * 3.4,
-                    //         height: 0.4 * 3.4,
-                    //     },
-                    //     "same"
-                    // )
-                    .to(
-                        this.crystal.position,
-                        {
-                            x: 1.5,
-                        },
-                        "same"
-                    );
-
+                }).to(this.crystal.scale, {
+                    x: 2,
+                    y: 2,
+                    z: 2,
+                }).to(this.crystal.position,{
+                    x:5,
+                    y:0,
+                    z:5,
+                }
+                )
                 // Third section -----------------------------------------
                 this.thirdMoveTimeline = new GSAP.timeline({
                     scrollTrigger: {
                         trigger: ".third-move",
                         start: "top top",
                         end: "bottom bottom",
-                        scrub: 0.6,
+                        scrub: 2,
                         invalidateOnRefresh: true,
                     },
                 }).to(this.crystal.position, {
-                    z: -4.5,
+                    z: 0,
+                    x:0,
+                    y:0,
+                }).to(this.crystal.rotation, {
+                    y: "+=360",
+                    // ease: "none",
                 });
+                console.log(this.crystal.rotation.y)
             },
 
             // all
