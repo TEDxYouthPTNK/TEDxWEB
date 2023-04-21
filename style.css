@@ -666,6 +666,7 @@ footer {
   align-items: center;
   margin-bottom: 20px;
   background: var(--color-background);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   color: var(--color-text);
   padding: 20px;
   z-index: 1;
@@ -675,6 +676,7 @@ footer {
 }
 
 .menu-container a {
+  backdrop-filter: blur(10px);
   text-decoration: none;
   color: var(--color-background);
   transition: color 0.3s ease;
