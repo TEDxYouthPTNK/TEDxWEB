@@ -5,7 +5,7 @@ export default class Floor {
     constructor() {
         this.experience = new Experience();
         this.scene = this.experience.scene;
-        const m4 = new THREE.MeshBasicMaterial({color: 0x000000});   // red
+        const m4 = new THREE.MeshBasicMaterial({color: 0x000000});   
 
         this.setFloor();
         this.setCircles();

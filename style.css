@@ -7,7 +7,7 @@
 }
 
 html, body{
-  font-family: "Montserrat", sans-serif;
+  font-family: "Helvetica", sans-serif;
 }
 
 /* body{
@@ -207,7 +207,7 @@ svg{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-pink);
+  background-color: var(--color-background);
   border-radius: 999px;
   margin: 60px 16px;
   border: none;
@@ -638,8 +638,8 @@ footer {
 
 /*********************** Registration button ******************/
 .css-button-shadow-border--red {
-  min-width: 130px;
-  height: 40px;
+  min-width: 200px;
+  height: 60px;
   color: #fff;
   padding: 5px 10px;
   font-weight: bold;
@@ -661,7 +661,7 @@ footer {
 }
 /***********************Menu******************/
 .menu-container {
-  position: relative;
+  position: fixed;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -691,7 +691,7 @@ footer {
   margin: 0;
   position: absolute;
   cursor: pointer;
-  opacity: 0; /* hide this */
+  opacity: 0; /*hide this */
   z-index: 2; /* and place it over the hamburger */
   -webkit-touch-callout: none;
 }
