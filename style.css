@@ -414,6 +414,7 @@ svg{
 
 .hero-second-subheading{
   font-size: 32px;
+  padding: 0px 20px;
   text-transform: uppercase;
   color: var(--color-text);
 }
@@ -579,6 +580,20 @@ svg{
 }
 
 /************************************** Footer*************************************/
+/* .highlight::hover::before{
+  content: ">> ";
+  color: red; */
+
+
+/* .highlight::after {
+  content: " <<";
+  colhovered;
+} */
+
+.highlight {
+  font-weight: bold;
+  color: var(--color-background-light);
+}
 
 
 footer {
@@ -643,6 +658,8 @@ footer {
   color: #fff;
   padding: 5px 10px;
   font-weight: bold;
+  font-size: 15px;
+  font-family:  Helvetica;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -651,10 +668,10 @@ footer {
   border-radius: 5px;
   border: none;
   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);
-  background: #d90429;
+  background: var(--color-background);
 }
 .css-button-shadow-border--red:hover {
-  background-color: #ef233c;
+  background-color: #eb0028;
 }
 .css-button-shadow-border--red:active {
   top: 2px;
