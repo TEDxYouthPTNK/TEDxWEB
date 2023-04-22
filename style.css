@@ -592,6 +592,7 @@ svg{
 
 .highlight {
   font-weight: bold;
+  /* font-size: 70px; */
   color: var(--color-background-light);
 }
 
