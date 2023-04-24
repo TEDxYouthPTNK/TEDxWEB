@@ -222,11 +222,12 @@
           </div>
         </section>
         <section class="speakers">
+          <h>Our speakers</h>
           <div class="guests">
-            <div class="speak1"></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="hover"></div>
+            <div class=""></div>
+            <div class=""></div>
+            <div class=""></div>
             <div></div>
             <div></div>
             <div></div>
@@ -241,6 +242,16 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
       <script type="text/javascript" src="js/particles.min.js"></script>
       <script type="text/javascript" src="js/custom.js"></script>
+    </script>
+    <script>
+       var speakers=document.querySelectorAll(".guests div");
+        speakers.forEach(function(el){
+          el.addEventListener("mouseenter", function(){
+            var panel=document.querySelector('.hover');
+            panel.classList.toggle('hover');
+            el.classList.toggle('hover');
+          }) 
+        })
     </script>
     <script type="text/javascript">
       const days=document.querySelectorAll('days');

@@ -833,18 +833,23 @@ footer {
   margin-top: 50px;
 }
 .speakers{
+  margin-top: 50px;
   display: grid;
   place-items: center;
-  min-height: 100vh;
+  min-height: 150vh;
   background: black;
   color: gray;
   text-align: center;
-  font-family: Helvetica;
 }
-.guests{
+.speakers h{
+  font-size: 100px;
+  margin-bottom: 50px;
+  color: var(--color-text);
+}
+.guests div{
   width: 20vw;
   max-width: 250px;
-  height: 75vh;
+  height: 70vh;
   background-size: auto 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -853,13 +858,13 @@ footer {
   filter: grayscale(1) opacity(0.1) contrast(200%);
   transition: 0.5s;
   transform: skewY(-10deg);
-  z-index: -99999;
+  z-index: -1;
 }
 
 div.guests :nth-child(1){ 
   background-image: url('img/hoangdung.png'); 
 } 
-.guests div :nth-child(2){
+div.guests :nth-child(2){
   background-image: url('img/minhtrang.png');
 }
 .guests div:nth-child(3){
@@ -880,3 +885,53 @@ div.guests :nth-child(1){
 .guests div:nth-child(8){
   background-image: url('img/doantrang.png');
 }
+.guests .hover{
+  filter: grayscale(0) opacity(1);
+  /* transform: scale(1.1); */
+  box-shadow: 0 25px 50px black;
+  z-index: 8888;
+}
+.guests div:nth-child(1)::after,
+.guests div:nth-child(2)::after,
+.guests div:nth-child(3)::after,
+.guests div:nth-child(4)::after,
+.guests div:nth-child(5)::after,
+.guests div:nth-child(6)::after,
+.guests div:nth-child(7)::after,
+.guests div:nth-child(8)::after{
+  content: "Speaker";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-shadow: 3px 3px #555;
+}
+.guests div:nth-child(1)::after{
+  content: "Hoàng Dũng";
+}
+.guests div:nth-child(2)::after{
+  content: "Minh Trang";
+}
+.guests div:nth-child(3)::after{
+  content: "Vanessa Phan"
+}
+.guests div:nth-child(4)::after{
+  content: "Scott Green";
+}
+.guests div:nth-child(5)::after{
+  content: "Thảo Vy";
+}
+.guests div:nth-child(6)::after{
+  content: "Thụ Nghĩa";
+}
+.guests div:nth-child(7)::after{
+  content: "Gia Bảo";
+}
+.guests div:nth-child(8)::after{
+  content: "Đoan Trang";
+}
+
