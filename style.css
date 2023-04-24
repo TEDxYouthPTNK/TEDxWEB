@@ -770,7 +770,9 @@ footer {
     flex-direction: column;
     align-items: flex-end;
   }
-  
+  .speakers h{
+    font-size: 50px;
+  }
   .menu {
     position: absolute;
     box-sizing: border-box;
@@ -935,3 +937,55 @@ div.guests :nth-child(2){
   content: "Đoan Trang";
 }
 
+
+.partners{
+  background: white;
+  margin-top: 50px;
+  padding: 64px 0;
+} 
+.partners-title{
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.partners-title h1{
+  font-size: 2rem;
+  font-weight: bold;
+}
+.logo-slider{
+  overflow-x: hidden;
+}
+.overflow{
+  display: flex;
+  padding: .5rem 1rem;
+  overflow: hidden;
+}
+.reverse .logos-wrapper{
+  animation-direction: reverse;
+}
+.logos-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  animation: logoLoop 30s linear infinite;
+}
+.logo-item{
+  margin-left: 1rem;
+  padding: 1rem;
+  aspect-ratio: 30/9;
+  display: grid;
+  place-items: center;
+  border-radius: 1rem;
+}
+.logo-item img{
+  height: 10rem;
+  width: 12rem;
+  margin-inline: 2rem;
+}
+@keyframes logoLoop{
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-100%);
+  }
+}
