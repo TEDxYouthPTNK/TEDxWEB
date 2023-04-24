@@ -889,7 +889,7 @@ div.guests :nth-child(2){
 }
 .guests .hover{
   filter: grayscale(0) opacity(1);
-  /* transform: scale(1.1); */
+  transform: scale(1.1);
   box-shadow: 0 25px 50px black;
   z-index: 8888;
 }
@@ -979,7 +979,7 @@ div.guests :nth-child(2){
 .logo-item img{
   height: 100%;
   width: 100%;
-  margin-inline: 2rem;
+  margin-inline: 5rem;
 }
 @keyframes logoLoop{
   from{
@@ -988,4 +988,57 @@ div.guests :nth-child(2){
   to{
     transform: translateX(-100%);
   }
+}
+.special-partner img{
+  height: 400px;
+  width: auto;
+}
+.performers{
+  background: black;
+  padding: 64px 0;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+
+}
+.slides{
+  width: 500%;
+  height: 500px;
+  display: flex;
+}
+.slides input{
+  /* display: none; */
+}
+.slides .slide{
+  width: 20%;
+  transition: 2s;
+}
+.slide img{
+  width: 500px;
+  height: auto;
+}
+.navigation-manual{
+  position:absolute;
+  width: 800px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+}
+.manual-btn{
+  border: 2px solir var(--color-background);
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+.manual-btn:not(:last-child){
+  margin-right: 40px;
+}
+.manual-btn:hover{
+  background: #555;
 }
