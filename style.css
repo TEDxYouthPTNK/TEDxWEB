@@ -841,7 +841,7 @@ footer {
   text-align: center;
   font-family: Helvetica;
 }
-.students{
+.guests, .students{
   width: 20vw;
   max-width: 250px;
   height: 75vh;
@@ -855,29 +855,19 @@ footer {
   transform: skewY(-10deg);
   z-index: -1;
 }
-.guests{
-  width: 20vw;
-  max-width: 250px;
-  height: 75vh;
-  background-size: auto 100%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  display: inline-block;
-  margin: 0 0.5rem;
-  filter: grayscale(1) opacity(0.1) contrast(200%);
-  transition: 0.5s;
-  transform: skewY(-10deg);
-  z-index: -1;
+
+.guests div:nth-child(1){
+  background-image: url('img/hoangdung.png');
 }
-.guests:nth-child(1){
-  background-image: url('img/hoangdung.PNG');
+.guests div :nth-child(2){
+  background-image: url('img/minhtrang.png');
 }
-.guests:nth-child(2){
-  background-image: url('img/Minh Trang.JPG');
+.guests div:nth-child(3){
+  background-image: url('img/vanessa.png');
 }
-.guests:nth-child(3){
-  background-image: url('img/Scott Green.JPG');
+.guests div:nth-child(4){
+  background-image: url('img/scottgreen.png');
 }
-.guests:nth-child(4){
-  background-image: url('img/Thảo Vy.jpeg');
+.guests div:nth-child(5){
+  background-image: url('img/thaovy.png');
 }
