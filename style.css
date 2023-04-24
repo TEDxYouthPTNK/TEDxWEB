@@ -841,7 +841,7 @@ footer {
   text-align: center;
   font-family: Helvetica;
 }
-.guests, .students{
+.guests{
   width: 20vw;
   max-width: 250px;
   height: 75vh;
@@ -853,12 +853,12 @@ footer {
   filter: grayscale(1) opacity(0.1) contrast(200%);
   transition: 0.5s;
   transform: skewY(-10deg);
-  z-index: -1;
+  z-index: -99999;
 }
 
-.guests div:nth-child(1){
-  background-image: url('img/hoangdung.png');
-}
+div.guests :nth-child(1){ 
+  background-image: url('img/hoangdung.png'); 
+} 
 .guests div :nth-child(2){
   background-image: url('img/minhtrang.png');
 }
@@ -870,4 +870,13 @@ footer {
 }
 .guests div:nth-child(5){
   background-image: url('img/thaovy.png');
+}
+.guests div:nth-child(6){
+  background-image: url('img/thunghia.png');
+}
+.guests div:nth-child(7){
+  background-image: url('img/giabao.png');
+}
+.guests div:nth-child(8){
+  background-image: url('img/doantrang.png');
 }
