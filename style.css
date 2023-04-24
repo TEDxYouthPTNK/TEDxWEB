@@ -838,7 +838,7 @@ footer {
   margin-top: 50px;
   display: grid;
   place-items: center;
-  min-height: 150vh;
+  min-height: 200vh;
   background: black;
   color: gray;
   text-align: center;
@@ -940,7 +940,7 @@ div.guests :nth-child(2){
 
 .partners{
   background: white;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   padding: 64px 0;
 } 
 .partners-title{
@@ -977,8 +977,8 @@ div.guests :nth-child(2){
   border-radius: 1rem;
 }
 .logo-item img{
-  height: 10rem;
-  width: 12rem;
+  height: 100%;
+  width: 100%;
   margin-inline: 2rem;
 }
 @keyframes logoLoop{
