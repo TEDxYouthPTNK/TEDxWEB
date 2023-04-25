@@ -1012,7 +1012,7 @@ div.guests :nth-child(2){
   display: flex;
 }
 .slides input{
-  /* display: none; */
+  display: none;
 }
 .slides .slide{
   width: 20%;
