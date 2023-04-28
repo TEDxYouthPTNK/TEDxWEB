@@ -301,7 +301,7 @@ svg{
 
 .section-detail-wrapper{
   position: relative;
-  padding: 20% 5%;
+  padding: 0% 5%;
   /* display: flex; */
 }
 
@@ -342,10 +342,10 @@ svg{
 .styleThree{
   position: absolute;
   display: block;
-  width: 100%;
-  max-width: 278px;
+  width: 500%;
+  max-width: 300px;
   height: 60px;
-  border: 1px solid var(--color-pink);
+  border: 1px solid var(--color-text);
   transform-origin: left;
   transform: skewY(-25deg);
 }
@@ -361,7 +361,7 @@ svg{
 .styleThree{
   top: 80px;
   transform: skewY(25deg);
-  background-color: var(--color-pink);
+  background-color: var(--color-text);
 }
 
 .section-number{
@@ -423,30 +423,30 @@ svg{
 /* Other colors override */
 
 .blue-text{
-  color: var(--color-blue)
+  color: var(--color-text)
 }
 
 .blue-border{
-  border-color: var(--color-blue);
+  border-color: var(--color-text);
 }
 
 .blue-background{
-  background-color: var(--color-blue);
+  background-color: var(--color-text);
 }
 
 .green-text{
-  color: var(--color-green)
+  color: var(--color-text)
 }
 
 .green-border{
-  border-color: var(--color-green);
+  border-color: var(--color-text);
 }
 
 .green-background{
-  background-color: var(--color-green);
+  background-color: var(--color-text);
 }
 .pink-text{
-  color: var(--color-pink);
+  color: var(--color-text);
 }
 
 /* Media Queries */
