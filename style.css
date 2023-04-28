@@ -847,6 +847,7 @@ footer {
   font-size: 100px;
   margin-bottom: 50px;
   color: var(--color-text);
+  
 }
 .guests div{
   width: 20vw;
@@ -993,52 +994,49 @@ div.guests :nth-child(2){
   height: 400px;
   width: auto;
 }
+
+
 .performers{
   background: black;
-  padding: 64px 0;
-  /* height: 100vh; */
+  min-height:200vh;
+}
+.performers-wrapper{
+  margin-top: 400px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
   width: 100%;
-  height: auto;
-  border-radius: 10px;
-  overflow: hidden;
-
+  height: 70vh;
+   
 }
-.slides{
-  width: 500%;
-  height: 500px;
-  display: flex;
+.performer {
+  flex: 1;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  transition: flex 0.8s ease;
+  
 }
-.slides input{
-  display: none;
-}
-.slides .slide{
-  width: 20%;
-  transition: 2s;
-}
-.slide img{
-  width: 500px;
-  height: auto;
-}
-.navigation-manual{
-  position:absolute;
-  width: 800px;
-  margin-top: -40px;
-  display: flex;
+.performers h{
+  font-size: 100px;
+  margin-bottom: 50px;
+  color: var(--color-text);
+  align-items: center;
   justify-content: center;
+  display: flex;
 }
-.manual-btn{
-  border: 2px solir var(--color-background);
-  padding: 5px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 1s;
+.performer:hover{
+  flex:2;
 }
-.manual-btn:not(:last-child){
-  margin-right: 40px;
+.performer-1{
+  background-image: url('partner-assets/doivannghe.png');
 }
-.manual-btn:hover{
-  background: #555;
+.performer-2{
+  background-image: url('partner-assets/thelights.png');
+}
+.performer-3{
+  background-image: url('partner-assets/theilly.png');
+}
+.performer-4{
+  background-image: url('partner-assets/doivannghe.png');
 }
