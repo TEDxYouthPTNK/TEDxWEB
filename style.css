@@ -824,13 +824,23 @@ form .g-inp{
 }
 
 /* mobile styles */
-@media only screen and (max-width: 767px) { 
+@media only screen and (max-width: 968px) { 
   .menu-container {
     flex-direction: column;
     align-items: flex-end;
   }
+  .special-partner img{
+    height: 200px;
+    width: auto;
+  }
   .speakers h{
     font-size: 50px;
+  }
+  .performers h{
+    font-size: 50px;
+  }
+  .guests div{
+    max-width: 100px;
   }
   .menu {
     position: absolute;
@@ -851,10 +861,11 @@ form .g-inp{
   .menu-container input:checked ~ .menu {
     transform: translateX(100%);
   }
+  
 }
 
 /* desktop styles */
-@media only screen and (min-width: 768px) { 
+@media only screen and (min-width: 969px) { 
   .menu-container {
     width: 100%;
   }
