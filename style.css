@@ -21,9 +21,14 @@ span,
 svg{
   transition: background-color 0.5s, color 0.5s;
 }
-
+hr.dashed {
+  border: 0;
+  
+  border-top: 3px dashed white;
+  margin-right: 10px;
+}
 :root{
-  --theme-col: red;
+  --theme-col: #EB0028;
 
   /* Light Theme Variables */
   --color-text-light: #D3EBED;
@@ -243,7 +248,7 @@ svg{
 .section{
   position: relative;
   width: 650px;
-  padding: 500px 10%;
+  padding: 300px 4%;
   margin: 0;
   background-color:var(--color-background);
   overflow: hidden;
@@ -310,14 +315,14 @@ svg{
 .section-heading{
   font-size: 30px;
   font-weight: 700;
-  line-height: 1.8;
-  margin-top: 64px;
+  /* line-height: 1.8; */
+  margin-top: 40px;
   color: var(--color-text);
 }
 
 .section-text{
   line-height: 2;
-  margin-top: 18px;
+  margin-top: 10px;
   font-size: 18px;
   color: var(--color-text);
 }
@@ -718,6 +723,13 @@ form .g-inp{
 .css-button-shadow-border--red:active {
   top: 2px;
 }
+.second-btn{
+  background: rgb(22, 22, 22);
+  color: white;
+}
+.second-btn:hover{
+  background: #3a3636;
+}
 /***********************Menu******************/
 .menu-container {
   position: fixed;
@@ -1032,7 +1044,7 @@ div.guests :nth-child(2){
   }
 }
 .special-partner img{
-  height: 400px;
+  height: 600px;
   width: auto;
 }
 
