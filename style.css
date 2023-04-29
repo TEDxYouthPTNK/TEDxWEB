@@ -688,7 +688,10 @@ form .g-inp{
   font-weight: 500;
 }
 
-
+.useful-links a{
+  text-decoration: none;
+  color: var(--color-text);
+}
 
 /*********************** Registration button ******************/
 .css-button-shadow-border--red {
