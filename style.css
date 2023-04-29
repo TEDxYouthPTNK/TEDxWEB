@@ -604,6 +604,8 @@ hr.dashed {
 }
 footer{
   background-color: #111010;
+  color: var(--color-text-dark);
+
 }
 .f-item-con{
   padding: 1.5rem 4rem;
@@ -612,7 +614,7 @@ footer{
   grid-gap: 2rem;
 }
 footer .app-name{
-  color: white;
+  color: var(--color-text-dark);
   border-left: 4px solid var(--theme-col);
   padding-left: 1.5rem;
   font-size: 1.875rem;
@@ -626,21 +628,22 @@ footer .app-name{
   color: var(--theme-col);
 }
 footer .app-info p{
-  color: white;
+  color: var(--color-text-dark);
   padding-left: 1.65rem;
 }
 
 footer .footer-title{ 
   font-size: 1.25rem;
   line-height: 1.75rem;
-  color: white;
+  color: var(--color-text-dark);
   border-left: 4px solid var(--theme-col);
   padding-left: 1.5rem;
   height: fit-content;
+  font-weight:bold;
 }
 footer ul{ 
   padding-left: 1.75rem;
-  color: white;
+  color: var(--color-text-dark);
   font-size: 0.875rem/* 14px */;
   line-height: 1.25rem;
   margin-top: .5rem;
@@ -656,6 +659,8 @@ footer ul li:hover{
 }
 footer .help-sec{
   grid-column-start: 2;
+  margin-top: -100px;
+  /* grid-row-start: 2; */
 }
 footer .cr-con{
   background-color: #232127;
@@ -695,7 +700,7 @@ form .g-inp{
 
 .useful-links a{
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--color-text-dark);
 }
 
 /*********************** Registration button ******************/
@@ -1026,7 +1031,7 @@ div.guests :nth-child(2){
 .logo-item{
   margin-left: 1rem;
   padding: 1rem;
-  aspect-ratio: 30/9;
+  /* aspect-ratio: 30/9; */
   display: grid;
   place-items: center;
   border-radius: 1rem;
@@ -1052,10 +1057,10 @@ div.guests :nth-child(2){
 
 .performers{
   background: black;
-  min-height:200vh;
+  min-height:100vh;
 }
 .performers-wrapper{
-  margin-top: 400px;
+  margin-top: 100px;
   display: flex;
   flex-direction: row;
   width: 100%;
