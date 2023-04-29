@@ -23,6 +23,8 @@ svg{
 }
 
 :root{
+  --theme-col: red;
+
   /* Light Theme Variables */
   --color-text-light: #D3EBED;
   --color-background-light: #EB0028;
@@ -590,67 +592,103 @@ svg{
   colhovered;
 } */
 
-.highlight {
-  font-weight: bold;
-  /* font-size: 70px; */
-  color: var(--color-background-light);
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+footer{
+  background-color: #111010;
+}
+.f-item-con{
+  padding: 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 2rem;
+}
+footer .app-name{
+  color: white;
+  border-left: 4px solid var(--theme-col);
+  padding-left: 1.5rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+.app-name .app-initial{
+  color: var(--theme-col);
+}
+.app-initial{
+  color: var(--theme-col);
+}
+footer .app-info p{
+  color: white;
+  padding-left: 1.65rem;
+}
+
+footer .footer-title{ 
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  color: white;
+  border-left: 4px solid var(--theme-col);
+  padding-left: 1.5rem;
+  height: fit-content;
+}
+footer ul{ 
+  padding-left: 1.75rem;
+  color: white;
+  font-size: 0.875rem/* 14px */;
+  line-height: 1.25rem;
+  margin-top: .5rem;
+}
+footer ul li{ 
+  margin: .25rem 0;
+  cursor: pointer;
+  color: #d4d4d4;
+  width: fit-content;
+}
+footer ul li:hover{
+  color: white;
+}
+footer .help-sec{
+  grid-column-start: 2;
+}
+footer .cr-con{
+  background-color: #232127;
+  color: white;
+  padding: 1rem 4rem;
+  text-align: center;
+}
+.g-i-t{
+  display: grid;
+  grid-column-start: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.g-i-t form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+form .g-inp{
+  padding: .25rem .5rem;
+  font-size: 16px;
+}
+.g-inp textarea{
+  height: 150px;
+}
+.f-btn{
+  padding: .25rem 1rem;
+  background-color: var(--theme-col);
+  border-radius: .25rem;
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
 }
 
 
-footer {
-    max-width: 85vw;
-    min-width: 85vw;
-    min-height: 50px;
-    width: 85vw;
-    top: 90vh;
-    position: fixed;
-    overflow: hidden;
-    height: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 100px;
-    padding-left: 100px;
-    z-index: 3;
-  }
-
-.dot {
-    background-color: #17bd70;
-    height: 12px;
-    width: 12px;
-    border-radius: 6px;
-    position: relative;
-    bottom: 5px;
-    z-index: 5;
-    font-size: 0px;
-  }
-
-.footer-progress-wrapper {
-  height: 3px;
-  background-color: #ffffff60;
-  position: absolute;
-  right: 100px;
-  left: 100px;
-  bottom: 57%;
-  z-index: 1;
-}
-
-.footer-progress {
-  height: 3px;
-  background-color: #17bd70;
-  z-index: 2;
-  width: 0%;
-  transition: width 0.5s;
-}
-.dot.active::before {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.dot.active::after {
-  opacity: 1;
-  transform: scale(1);
-}
 
 /*********************** Registration button ******************/
 .css-button-shadow-border--red {
