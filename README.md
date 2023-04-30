@@ -1,5 +1,5 @@
 # TEDxYouth PTNK
-![Website Image][img/webimg.jpeg]
+![Website Image](img/webimg.jpeg)
 >This is the repository of the website for TEDxYouth PTNK 2023
 
 ## Description
