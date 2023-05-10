@@ -935,28 +935,28 @@ form .g-inp{
 }
 
 div.guests :nth-child(1){ 
-  background-image: url('img/dung.png'); 
+  background-image: url('img/dung.jpg'); 
 } 
 div.guests :nth-child(2){
-  background-image: url('img/minhtrang.png');
+  background-image: url('img/minhtrang.jpg');
 }
 .guests div:nth-child(3){
-  background-image: url('img/vanessa.png');
+  background-image: url('img/vanessa.jpg');
 }
 .guests div:nth-child(4){
-  background-image: url('img/scottgreen.png');
+  background-image: url('img/scottgreen.jpg');
 }
 .guests div:nth-child(5){
-  background-image: url('img/thaovy.png');
+  background-image: url('img/thaovy.jpg');
 }
 .guests div:nth-child(6){
-  background-image: url('img/thunghia.png');
+  background-image: url('img/thunghia.jpg');
 }
 .guests div:nth-child(7){
-  background-image: url('img/giabao.png');
+  background-image: url('img/giabao.jpg');
 }
 .guests div:nth-child(8){
-  background-image: url('img/doantrang.png');
+  background-image: url('img/doantrang.jpg');
 }
 .guests .hover{
   filter: grayscale(0) opacity(1);
