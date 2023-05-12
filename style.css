@@ -920,8 +920,8 @@ form .g-inp{
   
 }
 .guests div{
-  width: 20vw;
-  max-width: 250px;
+  width: 100vw;
+  max-width: 300px;
   height: 70vh;
   background-size: auto 100%;
   background-position: 50% 50%;
@@ -943,19 +943,19 @@ div.guests :nth-child(2){
 .guests div:nth-child(3){
   background-image: url('img/vanessa.jpg');
 }
-.guests div:nth-child(4){
+/* .guests div:nth-child(4){
   background-image: url('img/scottgreen.jpg');
-}
-.guests div:nth-child(5){
+} */
+.guests div:nth-child(4){
   background-image: url('img/thaovy.jpg');
 }
-.guests div:nth-child(6){
+.guests div:nth-child(5){
   background-image: url('img/thunghia.jpg');
 }
-.guests div:nth-child(7){
+.guests div:nth-child(6){
   background-image: url('img/giabao.jpg');
 }
-.guests div:nth-child(8){
+.guests div:nth-child(7){
   background-image: url('img/doantrang.jpg');
 }
 .guests .hover{
@@ -993,16 +993,16 @@ div.guests :nth-child(2){
   content: "Vanessa Phan"
 }
 .guests div:nth-child(4)::after{
-  content: "Scott Green";
-}
-.guests div:nth-child(5)::after{
   content: "Thảo Vy";
 }
-.guests div:nth-child(6)::after{
+.guests div:nth-child(5)::after{
   content: "Thụ Nghĩa";
 }
-.guests div:nth-child(7)::after{
+.guests div:nth-child(6)::after{
   content: "Gia Bảo";
+}
+.guests div:nth-child(7)::after{
+  content: "Đoan Trang";
 }
 .guests div:nth-child(8)::after{
   content: "Đoan Trang";
