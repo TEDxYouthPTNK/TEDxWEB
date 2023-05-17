@@ -104,19 +104,19 @@ HKT456 -->
               <section class="timer ">
                 <div id="countdown" class="countdown">
                   <div class="time">
-                    <h2 id="days"></h2>
+                    <h2 id="days">00</h2>
                     <small>Days</small>
                   </div>
                   <div class="time">
-                    <h2 id="hours"></h2>
+                    <h2 id="hours">00</h2>
                     <small>Hours</small>
                   </div>
                   <div class="time">
-                    <h2 id="minutes"></h2>
+                    <h2 id="minutes">00</h2>
                     <small>Minutes</small>
                   </div>
                   <div class="time">
-                    <h2 id="seconds"></h2>
+                    <h2 id="seconds">00</h2>
                     <small>Seconds</small>
                   </div>
                 </div>
@@ -479,10 +479,10 @@ HKT456 -->
         const s=Math.floor((diff % (1000 * 60)) / 1000);
         // console.log(s);
 
-        document.getElementById('days').innerHTML=d;
-        document.getElementById('hours').innerHTML=h<10? '0'+h:h;
-        document.getElementById('minutes').innerHTML=m<10? '0'+m :m;
-        document.getElementById('seconds').innerHTML=s<10? '0'+s :s;
+        // document.getElementById('days').innerHTML=d;
+        // document.getElementById('hours').innerHTML=h<10? '0'+h:h;
+        // document.getElementById('minutes').innerHTML=m<10? '0'+m :m;
+        // document.getElementById('seconds').innerHTML=s<10? '0'+s :s;
       }
       setInterval(updateCountdown, 1000)
     </script>
